@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Projektarbete -Skolansökningar-</h1>
     <h2>Student information</h2>
-    
-   <h2>List of students</h2>
-    <ul id="studentList">
-    </ul>
-    <div id="studentSchool" style="border: 1px solid black;"></div>
-   
-    <legend for="filterOption">
-        Välj utbildning:
-    </legend>
+
+    <h2>List of students</h2>
+    <ul id="studentList"></ul>
+    <div id="studentSchool" style="border: 1px solid black"></div>
+
+    <legend for="filterOption">Välj utbildning:</legend>
     <div>
-        <input type="radio" name="filterOption" id="choice1" value="Frontend">
-        <label for="choice1">Frontend</label>
+      <input type="radio" name="filterOption" id="choice1" value="Frontend" />
+      <label for="choice1">Frontend</label>
     </div>
     <div>
-        <input type="radio" name="filterOption" id="choice2" value="Backend">
-        <label for="choice2">Backend</label>
+      <input type="radio" name="filterOption" id="choice2" value="Backend" />
+      <label for="choice2">Backend</label>
     </div>
     <div>
-        <input type="radio" name="filterOption" id="choice3" value=".NET">
-        <label for="choice3">.NET</label>
+      <input type="radio" name="filterOption" id="choice3" value=".NET" />
+      <label for="choice3">.NET</label>
     </div>
-    <button id=filterButton>Filter student!</button>
-    <div id="studentEducation" style="border: 1px solid black;"></div>
-    <button id=sortButton>Sortera eleverna</button>
-    <div id="studentInfo" style="border: 1px solid black;"></div>
-    <!-- <button id=chooseButton>Välja en elev</button> -->
-  
+    <button id="filterButton">Filter student!</button>
+    <div id="studentEducation" style="border: 1px solid black"></div>
+
+    <button class="age">Sortera eleverna med åder (lägst först)</button><br>
+    <button class="firstName">Sortera eleverna med förnamn(stigande)</button><br>
+    <button class="firstName2">Sortera eleverna med förnamn(fallande)</button><br>
+<button class="lastName">Sortera eleverna med efternamn(stigande)</button><br>
+<button class="lastName2">Sortera eleverna med efternamn(fallande)</button>
+      <div id="studentInfo" style="border: 1px solid black"></div>
+
+
+      <form action="#">
+          <input type="text" id="inputMessage">
+          <button id="showStudents">Show students</button>
+      </form>
+      <div id="studentOutput" style="border: 1px solid black"></div>
     <script src="main.js"></script>
     <!-- <script src="maintest.js"></script> -->
-</body>
+  </body>
 </html>
