@@ -8,23 +8,22 @@ async function renderData() {
   let students = await getData("https://api.mocki.io/v2/01047e91/students");
   let schools = await getData("https://api.mocki.io/v2/01047e91/schools");
 
-  //Skriva ut samtliga elever i en lista när sidan laddas
+  //Skriva ut samtliga elever i en lista när sidan laddas (Upp1)
   students.forEach((object) => {
     let student = document.createElement("li");
     student.textContent = object.firstName + " " + object.lastName + " ";
     document.querySelector("#studentList").appendChild(student);
 
-    //sortera elever i stigande och fallande ordning
-
-    //fixa en knapp för att visa passande skolan till eleva
+    //fixa en knapp för att visa passande skolan till eleven (Upp4)
     let showSchoolBtn = document.createElement("button");
-    showSchoolBtn.innerText = "Visa skolan";
+    showSchoolBtn.innerText = "Visa skolor";
     let showSchool = document.querySelector("#studentSchool");
     showSchoolBtn.addEventListener("click", () => {
       showSchool.innerHTML = "";
 
       //Filtrera elevernas hobbys & önskade utbildning och skolans activitet & utbildning
       let schoolInfo = schools;
+
       let schoolActivities = schools[0].activities;
       let schoolEducation = schools[0].programmes;
 
@@ -103,7 +102,7 @@ async function renderData() {
     student.appendChild(showSchoolBtn);
   });
 
-  //Filtrera eleverna i listan baserat på utbildning med radio button
+  //Filtrera eleverna i listan baserat på utbildning med radio button (Upp2)
   let filterButton = document.querySelector("#filterButton");
   let infoContainer = document.querySelector("#studentEducation");
 
@@ -150,7 +149,73 @@ async function renderData() {
     });
   });
 
-  //Sortera eleverna
+  // //Uppgift3
+  // //Sortera eleverna baserat på ålder, förnamn(arabisk ordning) och efternamn(alabisk ordning)
+  // students.forEach((info) => {
+  //   let sortButton = document.querySelector("#sortButton2");
+  //   let sortContainer = document.querySelector("#studentInfo2");
+
+  //   sortButton.addEventListener("click", () => {
+  //     sortContainer.innerHTML = "";
+
+  //     //Skriva ut alla elevernas information
+  //     let allStudents = document.createElement("ul");
+  //     sortContainer.append(allStudents);
+
+  //     students.forEach((object) => {
+  //       let studentName = document.createElement("p");
+  //       studentName.textContent =
+  //         "Name: " + object.firstName + " " + object.lastName;
+  //       allStudents.appendChild(studentName);
+
+  //       let studentAge = document.createElement("p");
+  //       studentAge.textContent = "Age:" + object.age;
+  //       studentName.appendChild(studentAge);
+  //       let text = document.createElement("p");
+
+  //       text.innerText = "Hobbies: ";
+  //       studentAge.appendChild(text);
+  //       let studentHobby = document.createElement("ul");
+  //       object.hobbies.forEach((index) => {
+  //         let studentHobbies = document.createElement("li");
+  //         studentHobbies.innerHTML = index;
+  //         text.appendChild(studentHobby);
+  //         studentHobby.appendChild(studentHobbies);
+  //       });
+
+  //       let studentEducation = document.createElement("p");
+  //       studentEducation.textContent = "Programme:" + object.programme;
+  //       text.appendChild(studentEducation);
+  //     });
+
+  //     //Sotera listan baserat på Ålder(lägst först)
+  //     students.sort((a, b) => (a.age > b.age ? 1 : -1));
+
+  //     // Förnamn(alfabetisk ordning)
+  //     students.sort((a, b) => {
+  //       if (a.firstName < b.firstName) {
+  //         return -1;
+  //       }
+  //       if (a.firstName > b.firstName) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     });
+
+  //     //Efternamn(alfabetisk ordning)
+  //     students.sort((a, b) => {
+  //       if (a.lastName < b.lastName) {
+  //         return -1;
+  //       }
+  //       if (a.lastName > b.lastName) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     });
+  //   });
+  // });
+
+  //Sortera eleverna(VG1)
   students.forEach((info) => {
     let sortContainer = document.querySelector("#studentInfo");
 
@@ -392,7 +457,7 @@ async function renderData() {
   });
 
   //
-  //Söka eleverna med nickel ord
+  //Söka eleverna med nickel ord(VG2)
   students.forEach((info) => {
     let showStudentsBtn = document.querySelector("#showStudents");
     showStudentsBtn.addEventListener("click", () => {
@@ -724,6 +789,520 @@ async function renderData() {
         student11Education.innerHTML = student11.programme;
         student11HobbiesList.appendChild(student11Education);
         output.appendChild(student11List);
+      }
+    });
+  });
+
+  
+//Visa skolan(VG3)
+  //Skriva ut samtliga elever i en lista när sidan laddas
+  students.forEach((object) => {
+    let student2 = document.createElement("li");
+    student2.textContent = object.firstName + " " + object.lastName + " ";
+    document.querySelector("#studentList2").appendChild(student2);
+
+    let radio1 = document.createElement("input");
+    radio1.type = "radio";
+    radio1.name = "student";
+    radio1.value = object.firstName;
+
+    student2.appendChild(radio1);
+
+    let showSchoolBtn2 = document.querySelector("#showSchool");
+
+    showSchoolBtn2.innerText = "Visa skolor";
+
+    showSchoolBtn2.addEventListener("click", () => {
+      //  Marcus
+      if (radio1.checked && radio1.value == "Marcus") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+
+          let marcusHobbies = personalProfile[0].hobbies;
+          let marcusProgramme = personalProfile[0].programme;
+
+          let compareHobbies = marcusHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme = index.programmes.filter(function (e) {
+            return marcusProgramme.indexOf(e) > -1;
+          });
+
+          if (compareHobbies.length == 1 && compareProgramme.length == 1) {
+            let marcusText = document.createElement("p");
+            marcusText.textContent = index.name;
+            marcusText.style.color = "Green";
+            schoolsGreen.appendChild(marcusText);
+          }
+          if (compareHobbies.length == 0 && compareProgramme.length == 1) {
+            let marcusText = document.createElement("p");
+            marcusText.textContent = index.name;
+            marcusText.style.color = "Yellow";
+            schoolsYellow.appendChild(marcusText);
+          }
+          if (compareProgramme.length == 0) {
+            let marcusText = document.createElement("p");
+            marcusText.textContent = index.name;
+            marcusText.style.color = "Red";
+            schoolsRed.appendChild(marcusText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Cassandra
+      if (radio1.checked && radio1.value == "Cassandra") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let cassandraHobbies = personalProfile[1].hobbies;
+          let cassandraProgramme = personalProfile[1].programme;
+
+          let compareHobbies2 = cassandraHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme2 = index.programmes.filter(function (e) {
+            return cassandraProgramme.indexOf(e) > -1;
+          });
+          if (compareHobbies2.length == 3 && compareProgramme2.length == 1) {
+            let cassandraText = document.createElement("p");
+            cassandraText.textContent = index.name;
+            cassandraText.style.color = "Green";
+            schoolsGreen.appendChild(cassandraText);
+          }
+          if (compareHobbies2.length <= 2 && compareProgramme2.length == 1) {
+            let cassandraText = document.createElement("p");
+            cassandraText.textContent = index.name;
+            cassandraText.style.color = "Yellow";
+            schoolsYellow.appendChild(cassandraText);
+          }
+          if (compareProgramme2.length == 0) {
+            let cassandraText = document.createElement("p");
+            cassandraText.textContent = index.name;
+            cassandraText.style.color = "Red";
+            schoolsRed.appendChild(cassandraText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Hannah
+      if (radio1.checked && radio1.value == "Hannah") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let hannahHobbies = personalProfile[2].hobbies;
+          let hannahProgramme = personalProfile[2].programme;
+
+          let compareHobbies3 = hannahHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme3 = index.programmes.filter(function (e) {
+            return hannahProgramme.indexOf(e) > -1;
+          });
+          if (compareHobbies3.length == 2 && compareProgramme3.length == 1) {
+            let hannahText = document.createElement("p");
+            hannahText.textContent = index.name;
+            hannahText.style.color = "Green";
+            schoolsGreen.appendChild(hannahText);
+          }
+          if (compareHobbies3.length <= 1 && compareProgramme3.length == 1) {
+            let hannahText = document.createElement("p");
+            hannahText.textContent = index.name;
+            hannahText.style.color = "Yellow";
+            schoolsYellow.appendChild(hannahText);
+          }
+          if (compareProgramme3.length == 0) {
+            let hannahText = document.createElement("p");
+            hannahText.textContent = index.name;
+            hannahText.style.color = "Red";
+            schoolsRed.appendChild(hannahText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Winston
+      if (radio1.checked && radio1.value == "Winston") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let winstonHobbies = personalProfile[3].hobbies;
+          let winstonProgramme = personalProfile[3].programme;
+
+          let compareHobbies4 = winstonHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme4 = index.programmes.filter(function (e) {
+            return winstonProgramme.indexOf(e) > -1;
+          });
+          if (compareHobbies4.length == 2 && compareProgramme4.length == 1) {
+            let winstonText = document.createElement("p");
+            winstonText.textContent = index.name;
+            winstonText.style.color = "Green";
+            schoolsGreen.appendChild(winstonText);
+          }
+          if (compareHobbies4.length <= 1 && compareProgramme4.length == 1) {
+            let winstonText = document.createElement("p");
+            winstonText.textContent = index.name;
+            winstonText.style.color = "Yellow";
+            schoolsYellow.appendChild(winstonText);
+          }
+          if (compareProgramme4.length == 0) {
+            let winstonText = document.createElement("p");
+            winstonText.textContent = index.name;
+            winstonText.style.color = "Red";
+            schoolsRed.appendChild(winstonText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+      //Maria
+      if (radio1.checked && radio1.value == "Maria") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let mariaHobbies = personalProfile[4].hobbies;
+          let mariaProgramme = personalProfile[4].programme;
+
+          let compareHobbies5 = mariaHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme5 = index.programmes.filter(function (e) {
+            return mariaProgramme.indexOf(e) > -1;
+          });
+          if (compareHobbies5.length == 2 && compareProgramme5.length == 1) {
+            let mariaText = document.createElement("p");
+            mariaText.textContent = index.name;
+            mariaText.style.color = "Green";
+            schoolsGreen.appendChild(mariaText);
+          }
+          if (compareHobbies5.length <= 1 && compareProgramme5.length == 1) {
+            let mariaText = document.createElement("p");
+            mariaText.textContent = index.name;
+            mariaText.style.color = "Yellow";
+            schoolsYellow.appendChild(mariaText);
+          }
+          if (compareProgramme5.length == 0) {
+            let mariaText = document.createElement("p");
+            mariaText.textContent = index.name;
+            mariaText.style.color = "Red";
+            schoolsRed.appendChild(mariaText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Ash
+      if (radio1.checked && radio1.value == "Ash") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let ashHobbies = personalProfile[5].hobbies;
+          let ashProgramme = personalProfile[5].programme;
+
+          let compareHobbies6 = ashHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme6 = index.programmes.filter(function (e) {
+            return ashProgramme.indexOf(e) > -1;
+          });
+          if (compareHobbies6.length === 2 && compareProgramme6.length === 1) {
+            let ashText = document.createElement("p");
+            ashText.textContent = index.name;
+            ashText.style.color = "Green";
+            schoolsGreen.appendChild(ashText);
+          }
+          if (compareHobbies6.length <= 1 && compareProgramme6.length == 1) {
+            let ashText = document.createElement("p");
+            ashText.textContent = index.name;
+            ashText.style.color = "Yellow";
+            schoolsYellow.appendChild(ashText);
+          }
+          if (compareProgramme6.length == 0) {
+            let ashText = document.createElement("p");
+            ashText.textContent = index.name;
+            ashText.style.color = "Red";
+            schoolsRed.appendChild(ashText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Leona
+      if (radio1.checked && radio1.value == "Leona") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let leonaHobbies = personalProfile[6].hobbies;
+          let leonaProgramme = personalProfile[6].programme;
+
+          let compareHobbies7 = leonaHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme7 = index.programmes.filter(function (e) {
+            return leonaProgramme.indexOf(e) > -1;
+          });
+          if (compareHobbies7.length === 1 && compareProgramme7.length === 1) {
+            let leonaText = document.createElement("p");
+            leonaText.textContent = index.name;
+            leonaText.style.color = "Green";
+            schoolsGreen.appendChild(leonaText);
+          }
+          if (compareHobbies7.length <= 0 && compareProgramme7.length == 1) {
+            let leonaText = document.createElement("p");
+            leonaText.textContent = index.name;
+            leonaText.style.color = "Yellow";
+            schoolsYellow.appendChild(leonaText);
+          }
+          if (compareProgramme7.length == 0) {
+            let leonaText = document.createElement("p");
+            leonaText.textContent = index.name;
+            leonaText.style.color = "Red";
+            schoolsRed.appendChild(leonaText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Fiona
+      if (radio1.checked && radio1.value == "Fiona") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let fionaHobbies = personalProfile[7].hobbies;
+          let fionaProgramme = personalProfile[7].programme;
+
+          let compareHobbies8 = fionaHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme8 = index.programmes.filter(function (e) {
+            return fionaProgramme.indexOf(e) > -1;
+          });
+          if (compareHobbies8.length === 1 && compareProgramme8.length === 1) {
+            let fionaText = document.createElement("p");
+            fionaText.textContent = index.name;
+            fionaText.style.color = "Green";
+            schoolsGreen.appendChild(fionaText);
+          }
+          if (compareHobbies8.length <= 0 && compareProgramme8.length == 1) {
+            let fionaText = document.createElement("p");
+            fionaText.textContent = index.name;
+            fionaText.style.color = "Yellow";
+            schoolsYellow.appendChild(fionaText);
+          }
+          if (compareProgramme8.length == 0) {
+            let fionaText = document.createElement("p");
+            fionaText.textContent = index.name;
+            fionaText.style.color = "Red";
+            schoolsRed.appendChild(fionaText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Anna
+      if (radio1.checked && radio1.value == "Anna") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let annaHobbies = personalProfile[8].hobbies;
+          let annaProgramme = personalProfile[8].programme;
+
+          let compareHobbies9 = annaHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme9 = index.programmes.filter(function (e) {
+            return annaProgramme.indexOf(e) > -1;
+          });
+          if (compareHobbies9.length === 1 && compareProgramme9.length === 1) {
+            let annaText = document.createElement("p");
+            annaText.textContent = index.name;
+            annaText.style.color = "Green";
+            schoolsGreen.appendChild(annaText);
+          }
+          if (compareHobbies9.length <= 0 && compareProgramme9.length == 1) {
+            let annaText = document.createElement("p");
+            annaText.textContent = index.name;
+            annaText.style.color = "Yellow";
+            schoolsYellow.appendChild(annaText);
+          }
+          if (compareProgramme9.length == 0) {
+            let annaText = document.createElement("p");
+            annaText.textContent = index.name;
+            annaText.style.color = "Red";
+            schoolsRed.appendChild(annaText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Neshin
+      if (radio1.checked && radio1.value == "Neshin") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let neshinHobbies = personalProfile[9].hobbies;
+          let neshinProgramme = personalProfile[9].programme;
+
+          let compareHobbies10 = neshinHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme10 = index.programmes.filter(function (e) {
+            return neshinProgramme.indexOf(e) > -1;
+          });
+          if (
+            compareHobbies10.length === 1 &&
+            compareProgramme10.length === 1
+          ) {
+            let neshinText = document.createElement("p");
+            neshinText.textContent = index.name;
+            neshinText.style.color = "Green";
+            schoolsGreen.appendChild(neshinText);
+          }
+          if (compareHobbies10.length <= 0 && compareProgramme10.length == 1) {
+            let neshinText = document.createElement("p");
+            neshinText.textContent = index.name;
+            neshinText.style.color = "Yellow";
+            schoolsYellow.appendChild(neshinText);
+          }
+          if (compareProgramme10.length == 0) {
+            let neshinText = document.createElement("p");
+            neshinText.textContent = index.name;
+            neshinText.style.color = "Red";
+            schoolsRed.appendChild(neshinText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
+      }
+
+      //Orlando
+      if (radio1.checked && radio1.value == "Orlando") {
+        let showSchool2 = document.querySelector("#studentSchool2");
+        showSchool2.innerHTML = "";
+        let schoolsGreen = document.createElement("p");
+        let schoolsYellow = document.createElement("p");
+        let schoolsRed = document.createElement("p");
+
+        schools.forEach((index) => {
+          let personalProfile = students;
+          let orlandoHobbies = personalProfile[10].hobbies;
+          let orlandoProgramme = personalProfile[10].programme;
+
+          let compareHobbies11 = orlandoHobbies.filter(function (e) {
+            return index.activities.indexOf(e) > -1;
+          });
+
+          let compareProgramme11 = index.programmes.filter(function (e) {
+            return orlandoProgramme.indexOf(e) > -1;
+          });
+          if (
+            compareHobbies11.length === 2 &&
+            compareProgramme11.length === 1
+          ) {
+            let orlandoText = document.createElement("p");
+            orlandoText.textContent = index.name;
+            orlandoText.style.color = "Green";
+            schoolsGreen.appendChild(orlandoText);
+          }
+          if (compareHobbies11.length <= 1 && compareProgramme11.length == 1) {
+            let orlandoText = document.createElement("p");
+            orlandoText.textContent = index.name;
+            orlandoText.style.color = "Yellow";
+            schoolsYellow.appendChild(orlandoText);
+          }
+          if (compareProgramme11.length == 0) {
+            let orlandoText = document.createElement("p");
+            orlandoText.textContent = index.name;
+            orlandoText.style.color = "Red";
+            schoolsRed.appendChild(orlandoText);
+          }
+          showSchool2.appendChild(schoolsGreen);
+          schoolsGreen.appendChild(schoolsYellow);
+          schoolsYellow.appendChild(schoolsRed);
+        });
       }
     });
   });

@@ -8,11 +8,11 @@
   </head>
   <body>
     <h1>Projektarbete -Skolansökningar-</h1>
-    <h2>Student information</h2>
+    
 
-    <h2>List of students</h2>
+    <h2>Studentlista</h2>
     <ul id="studentList"></ul>
-    <div id="studentSchool" style="border: 1px solid black"></div>
+    <div id="studentSchool" style="border: 1px solid black"></div><br>
 
     <legend for="filterOption">Välj utbildning:</legend>
     <div>
@@ -27,23 +27,35 @@
       <input type="radio" name="filterOption" id="choice3" value=".NET" />
       <label for="choice3">.NET</label>
     </div>
-    <button id="filterButton">Filter student!</button>
-    <div id="studentEducation" style="border: 1px solid black"></div>
 
-    <button class="age">Sortera eleverna med åder (lägst först)</button><br>
+    <button id="filterButton">Filtrera student!</button>
+    <div id="studentEducation" style="border: 1px solid black"></div><br>
+
+<!-- <button id="sortButton2">Sortera eleverna</button>
+<div id="studentInfo2" style="border: 1px solid black"></div> -->
+
+    <!-- Sortera student för VG -->
+    <button class="age">Sortera eleverna med ålder (lägst först)</button><br>
     <button class="firstName">Sortera eleverna med förnamn(stigande)</button><br>
     <button class="firstName2">Sortera eleverna med förnamn(fallande)</button><br>
 <button class="lastName">Sortera eleverna med efternamn(stigande)</button><br>
 <button class="lastName2">Sortera eleverna med efternamn(fallande)</button>
-      <div id="studentInfo" style="border: 1px solid black"></div>
+      <div id="studentInfo" style="border: 1px solid black"></div><br>
 
 
       <form action="#">
           <input type="text" id="inputMessage">
-          <button id="showStudents">Show students</button>
+          <button id="showStudents">Sök information</button>
       </form>
-      <div id="studentOutput" style="border: 1px solid black"></div>
+      <div id="studentOutput" style="border: 1px solid black"></div><br>
+
+      <h2>Studentlista för VG</h2>
+     
+      <ul id="studentList2"></ul>
+    
+      <button id="showSchool">Visa skolor</button>
+      <div id="studentSchool2" style="border: 1px solid black"></div>
     <script src="main.js"></script>
-    <!-- <script src="maintest.js"></script> -->
+    
   </body>
 </html>
