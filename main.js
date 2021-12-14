@@ -14,7 +14,7 @@ async function renderData() {
     student.textContent = object.firstName + " " + object.lastName + " ";
     document.querySelector("#studentList").appendChild(student);
 
-    //fixa en knapp för att visa passande skolan till eleven (Upp4)
+    //fixa en knapp för att visa passande skolor till eleven (Upp4)
     let showSchoolBtn = document.createElement("button");
     showSchoolBtn.innerText = "Visa skolor";
     let showSchool = document.querySelector("#studentSchool");
@@ -22,6 +22,7 @@ async function renderData() {
       showSchool.innerHTML = "";
 
       //Filtrera elevernas hobbys & önskade utbildning och skolans activitet & utbildning
+
       let schoolInfo = schools;
 
       let schoolActivities = schools[0].activities;
@@ -251,6 +252,9 @@ async function renderData() {
         let studentEducation = document.createElement("p");
         studentEducation.textContent = "Programme:" + object.programme;
         text.appendChild(studentEducation);
+
+        let line = document.createElement("hr");
+        studentEducation.appendChild(line);
       });
 
       let sortByAge = () => {
@@ -470,6 +474,7 @@ async function renderData() {
 
       //Loopa igenom varje elevernas profile
       let studentInfo = students;
+
       let student1 = studentInfo[0];
       let student1Hobbies = studentInfo[0].hobbies;
 
@@ -497,6 +502,9 @@ async function renderData() {
         student1Education.innerHTML = student1.programme;
         student1HobbiesList.appendChild(student1Education);
         output.appendChild(student1List);
+
+        let student1Line = document.createElement("hr");
+        student1List.appendChild(student1Line);
       }
 
       let student2 = studentInfo[1];
@@ -526,6 +534,9 @@ async function renderData() {
         student2Education.innerHTML = student2.programme;
         student2HobbiesList.appendChild(student2Education);
         output.appendChild(student2List);
+
+        let student2Line = document.createElement("hr");
+        student2List.appendChild(student2Line);
       }
 
       let student3 = studentInfo[2];
@@ -555,6 +566,9 @@ async function renderData() {
         student3Education.innerHTML = student3.programme;
         student3HobbiesList.appendChild(student3Education);
         output.appendChild(student3List);
+
+        let student3Line = document.createElement("hr");
+        student3List.appendChild(student3Line);
       }
 
       let student4 = studentInfo[3];
@@ -584,6 +598,9 @@ async function renderData() {
         student4Education.innerHTML = student4.programme;
         student4HobbiesList.appendChild(student4Education);
         output.appendChild(student4List);
+
+        let student4Line = document.createElement("hr");
+        student4List.appendChild(student4Line);
       }
 
       let student5 = studentInfo[4];
@@ -613,6 +630,9 @@ async function renderData() {
         student5Education.innerHTML = student5.programme;
         student5HobbiesList.appendChild(student5Education);
         output.appendChild(student5List);
+
+        let student5Line = document.createElement("hr");
+        student5List.appendChild(student5Line);
       }
 
       let student6 = studentInfo[5];
@@ -642,6 +662,9 @@ async function renderData() {
         student6Education.innerHTML = student6.programme;
         student6HobbiesList.appendChild(student6Education);
         output.appendChild(student6List);
+
+        let student6Line = document.createElement("hr");
+        student6List.appendChild(student6Line);
       }
 
       let student7 = studentInfo[6];
@@ -671,6 +694,9 @@ async function renderData() {
         student7Education.innerHTML = student7.programme;
         student7HobbiesList.appendChild(student7Education);
         output.appendChild(student7List);
+
+        let student7Line = document.createElement("hr");
+        student7List.appendChild(student7Line);
       }
 
       let student8 = studentInfo[7];
@@ -700,6 +726,9 @@ async function renderData() {
         student8Education.innerHTML = student8.programme;
         student8HobbiesList.appendChild(student8Education);
         output.appendChild(student8List);
+
+        let student8Line = document.createElement("hr");
+        student8List.appendChild(student8Line);
       }
 
       let student9 = studentInfo[8];
@@ -729,6 +758,9 @@ async function renderData() {
         student9Education.innerHTML = student9.programme;
         student9HobbiesList.appendChild(student9Education);
         output.appendChild(student9List);
+
+        let student9Line = document.createElement("hr");
+        student9List.appendChild(student9Line);
       }
 
       let student10 = studentInfo[9];
@@ -759,6 +791,9 @@ async function renderData() {
         student10Education.innerHTML = student10.programme;
         student10HobbiesList.appendChild(student10Education);
         output.appendChild(student10List);
+
+        let student10Line = document.createElement("hr");
+        student10List.appendChild(student10Line);
       }
 
       let student11 = studentInfo[10];
@@ -789,12 +824,14 @@ async function renderData() {
         student11Education.innerHTML = student11.programme;
         student11HobbiesList.appendChild(student11Education);
         output.appendChild(student11List);
+
+        let student11Line = document.createElement("hr");
+        student11List.appendChild(student11Line);
       }
     });
   });
 
-  
-//Visa skolan(VG3)
+  //Visa skolan(VG3)
   //Skriva ut samtliga elever i en lista när sidan laddas
   students.forEach((object) => {
     let student2 = document.createElement("li");
